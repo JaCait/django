@@ -1,15 +1,10 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <link rel="stylesheet" href="{% static 'css/blog.css' %}">
-        <title> Django </title>
-    </head>
-
-    <body>
-        <div class="witaj">
-            <h1> peepoHey </h1>
-        </div>
-    </body>
-</html>
+{%extends 'blog/base.html' %}
+{% block content %}
+            {% for post in posts %}
+                <div>
+                    <h2> <a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }} </a> </h2>
+                    <p> {{ post.text|linebreaksbr }} </p>
+                    <p> Data publikacji: {{ post.published_date }} </p>
+                </div>
+            {% endfor %}
+{% endblock %}
